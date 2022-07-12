@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.dollop.blog.Entities.Post;
 import com.dollop.blog.PayLoads.PostDto;
+import com.dollop.blog.PayLoads.PostResponse;
 
 public interface PostService {
 	
@@ -13,14 +14,15 @@ public interface PostService {
 	
 	void deletePost(Integer postId);
 	
-	List<PostDto> getAllPosts();
+	PostResponse getAllPosts(Integer pageNo,Integer pageSize,String sortBy,String order);
 	
 	PostDto getPostById(Integer postId);
 	
-	List<PostDto> getAllPostsByCategory(Integer categoryId);
+	PostResponse getAllPostsByCategory(Integer categoryId, Integer pageNo, Integer pageSize,String sortBy,String order);
 	
-	List<PostDto> getPostsByUser(Integer userId);
+	PostResponse getPostsByUser(Integer userId,Integer pageNo,Integer pageSize,String sortBy,String order);
 	
 	List<PostDto> searchPosts(String keyword);
+	
 	
 }
