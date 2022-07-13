@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.dollop.blog.Config.AppConstants;
 import com.dollop.blog.PayLoads.ApiResponse;
 import com.dollop.blog.PayLoads.PostDto;
 import com.dollop.blog.PayLoads.PostResponse;
 import com.dollop.blog.Services.PostService;
+import com.dollop.blog.Config.AppConstants;
 
 @RestController
 @RequestMapping("/api/")
@@ -37,10 +39,10 @@ public class PostController {
 
 	@GetMapping("/user/{userId}/posts")
 	public ResponseEntity<PostResponse> getPostsByUser(@PathVariable("userId") Integer userId,
-			@RequestParam(value="pageNo",defaultValue="0",required=false) Integer pageNo,
-			@RequestParam(value="pageSize",defaultValue="10",required=false) Integer pageSize,
-			@RequestParam(value="sortBy",defaultValue="postId",required=false) String sortBy,
-			@RequestParam(value="order",defaultValue="asc",required=false) String order){
+			@RequestParam(value="pageNo",defaultValue=AppConstants.PAGE_NUMBER,required=false) Integer pageNo,
+			@RequestParam(value="pageSize",defaultValue=AppConstants.PAGE_SIZE,required=false) Integer pageSize,
+			@RequestParam(value="sortBy",defaultValue=AppConstants.SORT_BY,required=false) String sortBy,
+			@RequestParam(value="order",defaultValue=AppConstants.OREDER_BY,required=false) String order){
 		
 		PostResponse postResponse=this.postService.getPostsByUser(userId,pageNo, pageSize,sortBy,order);
 		
@@ -50,10 +52,10 @@ public class PostController {
 
 	@GetMapping("/category/{categoryId}/posts")
 	public ResponseEntity<PostResponse> getPostsByCategory(@PathVariable("categoryId") Integer categotyId,
-			@RequestParam(value = "pageNo", defaultValue = "0", required = false) Integer pageNo,
-			@RequestParam(value = "pageSize", defaultValue = "10", required = false) Integer pageSize,
-			@RequestParam(value="sortBy",defaultValue="postId",required=false) String sortBy,
-			@RequestParam(value="order",defaultValue="asc",required=false) String order) {
+			@RequestParam(value = "pageNo", defaultValue = AppConstants.PAGE_NUMBER, required = false) Integer pageNo,
+			@RequestParam(value = "pageSize", defaultValue = AppConstants.PAGE_SIZE, required = false) Integer pageSize,
+			@RequestParam(value="sortBy",defaultValue=AppConstants.SORT_BY,required=false) String sortBy,
+			@RequestParam(value="order",defaultValue=AppConstants.OREDER_BY,required=false) String order) {
 
 		PostResponse postResponse= this.postService.getAllPostsByCategory(categotyId, pageNo, pageSize,sortBy,order);
 
@@ -63,10 +65,10 @@ public class PostController {
 
 	@GetMapping("/posts")
 	public ResponseEntity<PostResponse> getAllPosts(
-			@RequestParam(value = "pageNo", defaultValue = "0", required = false) Integer pageNo,
-			@RequestParam(value = "pageSize", defaultValue = "10", required = false) Integer pageSize,
-			@RequestParam(value="sortBy",defaultValue="postId",required=false) String sortBy,
-			@RequestParam(value="order",defaultValue="asc",required=false) String order) {
+			@RequestParam(value = "pageNo", defaultValue =AppConstants.PAGE_NUMBER , required = false) Integer pageNo,
+			@RequestParam(value = "pageSize", defaultValue = AppConstants.PAGE_SIZE, required = false) Integer pageSize,
+			@RequestParam(value="sortBy",defaultValue=AppConstants.SORT_BY,required=false) String sortBy,
+			@RequestParam(value="order",defaultValue=AppConstants.OREDER_BY,required=false) String order) {
 
 		PostResponse postResponse = this.postService.getAllPosts(pageNo, pageSize,sortBy,order);
 
