@@ -3,7 +3,10 @@ package com.dollop.blog.Entities;
 
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity(name="post")
@@ -37,11 +41,14 @@ public class Post {
 	
 	@ManyToOne
 	private User user;
+	
+	@OneToMany(mappedBy="post",cascade=CascadeType.ALL)
+	private Set<Comment> comment=new HashSet<>();
+	
 
 	public Integer getPostId() {
 		return postId;
 	}
-
 	public void setPostId(Integer postId) {
 		this.postId = postId;
 	}
@@ -94,6 +101,12 @@ public class Post {
 		this.user = user;
 	}
 
+	public Set<Comment> getComment() {
+		return comment;
+	}
+	public void setComment(Set<Comment> comment) {
+		this.comment = comment;
+	}
 	public Post() {
 		super();
 		// TODO Auto-generated constructor stub

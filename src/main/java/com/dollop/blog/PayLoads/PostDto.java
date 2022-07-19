@@ -1,6 +1,10 @@
 package com.dollop.blog.PayLoads;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import com.dollop.blog.Entities.Comment;
 
 
 public class PostDto {
@@ -18,6 +22,8 @@ public class PostDto {
 	private CategoryDto category;
 	
 	private UserDto user;
+	
+	private Set<CommentDto> comment=new HashSet<>();
 
 	public String getTitle() {
 		
@@ -88,6 +94,29 @@ public class PostDto {
 
 	public void setUser(UserDto user) {
 		this.user = user;
+	}
+
+
+
+	public Integer getPostId() {
+		return postId;
+	}
+
+
+
+	public void setPostId(Integer postId) {
+		this.postId = postId;
+	}
+
+
+	public Set<CommentDto> getComment() {
+		return comment;
+	}
+
+
+
+	public void setComment(Set<CommentDto> comment) {
+		this.comment = comment;
 	}
 
 
